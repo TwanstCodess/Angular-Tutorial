@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="myapp">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Angualr Js Tutorial</title>
-    <script src="./angular.min.js"></script>
+    <script src="./lib/angular.min.js"></script>
+    <script src="lib/app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-   
+  <body ng-controller="con">
+    <p>{{name}}</p>
+    <p>{{age}} Years Old</p>
   </body>
 </html>
