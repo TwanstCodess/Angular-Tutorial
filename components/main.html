@@ -1,15 +1,83 @@
-<div class="flex h-screen">
+<div class="flex flex-col md:flex-row">
   <!-- Sidebar -->
-  <div ng-include="'components/inc/sidebar.html'"></div>
-  <!-- Sidebar -->
+  <div class="w-full md:w-1/4 bg-white border-gray-300 border-r p-1">
+    <div class="md:fixed w-full md:w-1/4 p-1">
+      <h2
+        class="text-lg font-semibold mb-4 bg-purple-500 text-center rounded-lg text-white"
+      >
+        Filter
+      </h2>
+
+      <div class="mb-4">
+        <h3 class="text-sm font-semibold mb-2 bg-purple-400 p-1">Gender</h3>
+        <label class="flex items-center">
+          <button
+            class="bg-blue-600 hover:bg-blue-400 m-2 text-white p-1 rounded"
+          >
+            Man
+          </button>
+          <button
+            class="bg-pink-600 hover:bg-pink-400 m-2 text-white p-1 rounded"
+          >
+            Women
+          </button>
+        </label>
+      </div>
+
+      <div class="mb-4">
+        <h3 class="text-sm font-semibold mb-2 bg-purple-400 p-1">
+          Price Range
+        </h3>
+        <label class="flex items-center">
+          <button
+            class="bg-green-600 hover:bg-green-400 m-2 text-white p-1 rounded"
+          >
+            Low
+          </button>
+          <button
+            class="bg-yellow-600 hover:bg-yellow-400 m-2 text-white p-1 rounded"
+          >
+            Medium
+          </button>
+          <button
+            class="bg-red-600 hover:bg-red-400 m-2 text-white p-1 rounded"
+          >
+            High
+          </button>
+        </label>
+      </div>
+
+      <div class="mb-4">
+        <h3 class="text-sm font-semibold mb-2 bg-purple-400 p-1">Size</h3>
+        <label class="flex items-center">
+          <button
+            class="bg-green-600 hover:bg-green-400 m-2 text-white p-1 rounded"
+          >
+            Small
+          </button>
+          <button
+            class="bg-yellow-600 hover:bg-yellow-400 m-2 text-white p-1 rounded"
+          >
+            Medium
+          </button>
+          <button
+            class="bg-red-600 hover:bg-red-400 m-2 text-white p-1 rounded"
+          >
+            Large
+          </button>
+        </label>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content -->
-  <div class="container mx-auto px-4">
+  <div class="container mx-auto px-4 md:w-3/4">
     <!-- Centered Search Input -->
     <div class="flex justify-center mt-8">
       <input
         type="text"
         placeholder="Search By Name"
+        ng-model="SearchByName"
         class="w-full max-w-md px-4 py-2 text-center text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
       />
     </div>
@@ -18,15 +86,18 @@
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-5"
     >
       <!-- Card 1 -->
-      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+      <div
+        class="bg-white shadow-md rounded-lg overflow-hidden"
+        ng-repeat="item in items | filter:SearchByName"
+      >
         <img
-          class="w-30 h-30 object-cover object-center"
-          src="../gender/man/2.png"
+          class="w-full h-38 sm:h-34 object-cover object-center"
+          src="{{item.image}}"
           alt="Product Image"
         />
         <div class="p-4">
-          <h2 class="text-lg font-semibold text-gray-800">T-shirt</h2>
-          <p class="text-gray-600">$19.99</p>
+          <h2 class="text-lg font-semibold text-gray-800">{{item.name}}</h2>
+          <p class="text-gray-600">Price: {{item.price | currency:"$"}}</p>
           <button
             class="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
           >
